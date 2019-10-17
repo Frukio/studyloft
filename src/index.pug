@@ -9,7 +9,108 @@ html(lang="en")
     title Portfolio | main page
   body
     .wrapper
-      .maincontent
-        +image('content/user.jpg', 'user-pic')
-        +icon('link', 'link-class')
-        .icon-bg
+      .welcome-section
+        section.hero  
+          .container.hero__container
+            header.header.hero__header
+              .hero__logo
+                .logo ВМ
+              .hero__menu
+                nav.nav
+                  ul.nav__list
+                    - var menu = ['Главная', "Обо мне", "Навыки", "Работы", "Отзывы", "Связаться"]
+                    each item in menu
+                      li.nav__elem
+                        a(href="").nav__link #{item}
+              
+              .hero__links
+                - var icons = ['insta', 'vk', 'github']
+                ul.socials
+                  each item in icons
+                    li.socials__elem
+                      a(href="").socials__link
+                        +icon(`${item}`, 'social__icon')
+
+          
+            .hero__content
+              .user-info
+                h1.user-info__desc Личный сайт веб разработчика
+                .user-info__username Владислав Моряк
+            
+            
+            .hero__btns
+              .scroll-down-btns 
+                .scroll-down-btns__desc Скролл
+                +icon(`scroll`, 'scroll__icon')
+        section.about
+          .container.about__container
+            .about__left
+              .user
+                .avatar.user__avatar
+                  +image("content/user.jpg", "avatai__pic")
+                ul.user__desc
+                  -
+                    var items = [
+                      ['Проживаю', 'Тула'],
+                      ['Возраст', '20 лет'],
+                      ['Родился', '1 июля 1999'],
+                    ]
+                  each item in items
+                    li.user__desc-elem
+                      .user__key #{item[0]}
+                      .user__value #{item[1]}
+                      .user__old #{item[2]}
+            .about__right
+              h4.about__prolog Привет, меня зовут
+              h2.about__title Владислав Моряк
+              .about__text Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
+              .about__ps Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нем контент. А пока посмотрите, как тут все классно и красиво.
+      .triangles
+        svg.triangles__item(viewBox="0 0 1000 100" preserveAspectRatio='none')
+          polygon(points="0,0 0,100 1000,100")
+        svg.triangles__item(viewBox="0 0 1000 100" preserveAspectRatio='none')
+          polygon(points="0,100 1000,100 1000,0")
+
+      .values
+
+        .values__backpack
+        .container
+          .values__title
+            h2.section-title.values__title-text Чем я могу быть полезен вам
+            .values__desc 
+              p Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нем контент. А пока посмотрите, как тут все классно и красиво.
+        ul.user-skills  
+          -
+            var skills = [
+              ['frontend', ['html', 'css', 'js']],
+              ['workflow', ['git', 'terminal', 'gulp']],
+            ]
+          each item in skills
+            li.user-skills__elem.skills-row 
+              h3.skills-row__title #{item[0]}
+              ul.skills-row__list 
+                each skill in item[1]
+                  li.skills-row__elem
+                    .skill
+                      svg(viewBox="0 0 200 200" preserveAspectRatio="0").skill__shape
+                        circle(r='80' cx='100' cy='100').skill__circle.skill__circle--under
+                        circle(r='80' cx='100' cy='100').skill__circle.skill__circle--above
+                        linear-gradient()
+                      .skill__title #{skill}
+
+      .works
+        h2.section-title Мои работы
+        .works__left 
+          .slider
+            img().slider__fullpic
+            .slider__preview
+              ul.previews
+                - for (var i = 0; i < 3; i++)
+                li.previews__elem
+                  img.previews__pic
+            .slider-buttons
+              button.slider-buttons__item.slider-buttons__item--slide--prev
+              button.slider-buttons__item.slider-buttons__item--slide--next
+
+
+        .works__right   
